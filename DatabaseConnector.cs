@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,44 @@ namespace TogetherCulture
 {
     internal class DatabaseConnector
     {
-        var dbCon = DBConnection.Instance();
-        dbCon.Server = "YourServer";
-dbCon.DatabaseName = "YourDatabase";
-dbCon.UserName = "YourUsername";
-dbCon.Password = "YourPassword";
-if (dbCon.IsConnect())
+        DatabaseConnector connection = DatabaseConnector.Instance();
+
+        private DatabaseConnector()
+        {
+        }
+
+        public string Server { get; set; }
+        public string DatabaseName { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+
+        public MySqlConnection Connection { get; set; }
+
+        private static DatabaseConnector _instance = null;
+        public static DatabaseConnector Instance()
+        {
+            if (_instance == null)
+                _instance = new DatabaseConnector();
+            return _instance;
+        }
+
+        public bool Connected()
+        {
+            if (Connection == null)
+            {
+                if (String.IsNullOrEmpty(DatabaseName))
+                    return false;
+                string connstring = string.Format("Server={0}; database={1}; UID={2}; password={3}", Server, DatabaseName, UserName, Password);
+                Connection = new MySqlConnection(connstring);
+                Connection.Open();
+            }
+
+            return true;
+        }
+
+        public void Close()
+        {
+            Connection.Close();
+        }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +24,29 @@ namespace TogetherCulture
             this.role = role;
         }
 
-        public void login() { 
-        
-        
+        public MySqlDataReader login(String username,String password) {
+            MySqlDataReader results =null;
+
+            var connection = DatabaseConnector.Instance();
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected()) {
+                string query = "SELECT * FROM user WHERE username=@param1 and password=@param2";
+                var cmd = new MySqlCommand(query, connection.Connection);
+                cmd.Parameters.AddWithValue("@param1", username);
+                cmd.Parameters.AddWithValue("@param2", password);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    results = reader;
+                }
+                connection.Close();
+            }
+
+            return results;
         }
 
         
