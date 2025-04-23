@@ -24,10 +24,16 @@ namespace TogetherCulture
             this.role = role;
         }
 
+        //Empty Constructor
+        public User() { 
+        
+        }
+
         public MySqlDataReader login(String username,String password) {
             MySqlDataReader results =null;
 
-            var connection = DatabaseConnector.Instance();
+            var connection = new DatabaseConnector();
+
             connection.Server = "localhost";
             connection.DatabaseName = "togetherculture";
             connection.UserName = "root";
@@ -40,10 +46,11 @@ namespace TogetherCulture
                 cmd.Parameters.AddWithValue("@param2", password);
 
                 var reader = cmd.ExecuteReader();
+
                 if (reader.HasRows) {
                     results = reader;
                 }
-                connection.Close();
+                
             }
 
             return results;

@@ -26,5 +26,10 @@ namespace TogetherCulture
         {
 
         }
+
+        private void UserProfilePage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -12,9 +12,9 @@ namespace TogetherCulture
 {
     internal class DatabaseConnector
     {
-        DatabaseConnector connection = DatabaseConnector.Instance();
+  
 
-        private DatabaseConnector()
+        public DatabaseConnector()
         {
         }
 
@@ -24,15 +24,6 @@ namespace TogetherCulture
         public string Password { get; set; }
 
         public MySqlConnection Connection { get; set; }
-
-        private static DatabaseConnector _instance = null;
-        public static DatabaseConnector Instance()
-        {
-            if (_instance == null)
-                _instance = new DatabaseConnector();
-            return _instance;
-        }
-
         public bool Connected()
         {
             if (Connection == null)

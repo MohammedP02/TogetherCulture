@@ -42,11 +42,11 @@
             textBox5 = new TextBox();
             label8 = new Label();
             groupBox1 = new GroupBox();
-            chkCaring = new CheckBox();
-            chkSharing = new CheckBox();
-            chkCreating = new CheckBox();
-            chkExperiencing = new CheckBox();
             chkWorking = new CheckBox();
+            chkExperiencing = new CheckBox();
+            chkCreating = new CheckBox();
+            chkSharing = new CheckBox();
+            chkCaring = new CheckBox();
             btnCreate = new Button();
             btnDelete = new Button();
             btnUpdate = new Button();
@@ -184,35 +184,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Interests";
             // 
-            // chkCaring
+            // chkWorking
             // 
-            chkCaring.AutoSize = true;
-            chkCaring.Location = new Point(12, 26);
-            chkCaring.Name = "chkCaring";
-            chkCaring.Size = new Size(71, 24);
-            chkCaring.TabIndex = 0;
-            chkCaring.Text = "Caring";
-            chkCaring.UseVisualStyleBackColor = true;
-            // 
-            // chkSharing
-            // 
-            chkSharing.AutoSize = true;
-            chkSharing.Location = new Point(131, 26);
-            chkSharing.Name = "chkSharing";
-            chkSharing.Size = new Size(78, 24);
-            chkSharing.TabIndex = 1;
-            chkSharing.Text = "Sharing";
-            chkSharing.UseVisualStyleBackColor = true;
-            // 
-            // chkCreating
-            // 
-            chkCreating.AutoSize = true;
-            chkCreating.Location = new Point(228, 26);
-            chkCreating.Name = "chkCreating";
-            chkCreating.Size = new Size(84, 24);
-            chkCreating.TabIndex = 2;
-            chkCreating.Text = "Creating";
-            chkCreating.UseVisualStyleBackColor = true;
+            chkWorking.AutoSize = true;
+            chkWorking.Location = new Point(131, 81);
+            chkWorking.Name = "chkWorking";
+            chkWorking.Size = new Size(83, 24);
+            chkWorking.TabIndex = 4;
+            chkWorking.Text = "Working";
+            chkWorking.UseVisualStyleBackColor = true;
             // 
             // chkExperiencing
             // 
@@ -224,15 +204,35 @@
             chkExperiencing.Text = "Experiencing";
             chkExperiencing.UseVisualStyleBackColor = true;
             // 
-            // chkWorking
+            // chkCreating
             // 
-            chkWorking.AutoSize = true;
-            chkWorking.Location = new Point(131, 81);
-            chkWorking.Name = "chkWorking";
-            chkWorking.Size = new Size(83, 24);
-            chkWorking.TabIndex = 4;
-            chkWorking.Text = "Working";
-            chkWorking.UseVisualStyleBackColor = true;
+            chkCreating.AutoSize = true;
+            chkCreating.Location = new Point(228, 26);
+            chkCreating.Name = "chkCreating";
+            chkCreating.Size = new Size(84, 24);
+            chkCreating.TabIndex = 2;
+            chkCreating.Text = "Creating";
+            chkCreating.UseVisualStyleBackColor = true;
+            // 
+            // chkSharing
+            // 
+            chkSharing.AutoSize = true;
+            chkSharing.Location = new Point(131, 26);
+            chkSharing.Name = "chkSharing";
+            chkSharing.Size = new Size(78, 24);
+            chkSharing.TabIndex = 1;
+            chkSharing.Text = "Sharing";
+            chkSharing.UseVisualStyleBackColor = true;
+            // 
+            // chkCaring
+            // 
+            chkCaring.AutoSize = true;
+            chkCaring.Location = new Point(12, 26);
+            chkCaring.Name = "chkCaring";
+            chkCaring.Size = new Size(71, 24);
+            chkCaring.TabIndex = 0;
+            chkCaring.Text = "Caring";
+            chkCaring.UseVisualStyleBackColor = true;
             // 
             // btnCreate
             // 
@@ -285,6 +285,7 @@
             Controls.Add(label1);
             Name = "UserProfilePage";
             Text = "UserProfilePage";
+            Load += UserProfilePage_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

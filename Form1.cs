@@ -1,3 +1,6 @@
+using MySql.Data.MySqlClient;
+using System.Data.Common;
+
 namespace TogetherCulture
 {
     public partial class Form1 : Form
@@ -19,6 +22,43 @@ namespace TogetherCulture
 
         private void label3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            String username = txtUsername.Text;
+            String password=txtPassword.Text;
+
+            User user=new User();
+            MySqlDataReader queryResults = user.login(username,password);
+
+            if (queryResults == null)
+            {
+                MessageBox.Show("Incorrect Username or Password. Try Again");
+            }
+            else {
+                //get the role and redirect to the user profile or admin dashboard
+                using (queryResults)
+                {
+                    while (queryResults.Read())
+                    {
+                        String role = queryResults.GetString(3);
+                        if (role == "user")
+                        {
+                            this.Hide();
+                            UserProfilePage page = new UserProfilePage();
+                            page.Show();
+                        }
+                        else {
+                            this.Hide();
+                            AdminDashboard dashboard=new AdminDashboard();
+                            dashboard.Show();
+                        }
+                    }
+                }
+
+            }
 
         }
     }
