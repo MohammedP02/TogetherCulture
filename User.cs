@@ -55,6 +55,45 @@ namespace TogetherCulture
 
             return results;
         }
+        public void createProfile(int userID,int age,String name,String phonenumber,String location,List<String> interests)
+        {
+            MySqlDataReader results = null;
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string queryProfile = "INSERT INTO profile(userID,name,age,location,phonenumber) VALUES(@userIDParam,@nameParam,@ageParam,@locationParam,@phonenumberParam)";
+                var cmd = new MySqlCommand(queryProfile, connection.Connection);
+
+                cmd.Parameters.AddWithValue("@userIDParam", userID);
+                cmd.Parameters.AddWithValue("@nameParam", name);
+                cmd.Parameters.AddWithValue("@ageParam", age);
+                cmd.Parameters.AddWithValue("@locationParam", location);
+                cmd.Parameters.AddWithValue("@phonenumberParam", phonenumber);
+
+                var writer = cmd.ExecuteNonQuery();
+
+                if (writer > 0)
+                {
+                    foreach (String interest in interests) {
+                        string queryInterest = "INSERT INTO interests(userID,interestName) VALUES(@userIDParam,@interestParam)";
+                        cmd = new MySqlCommand(queryInterest, connection.Connection);
+
+                        cmd.Parameters.AddWithValue("@userIDParam", userID);
+                        cmd.Parameters.AddWithValue("@interestParam", interest);
+                    }
+
+                    MessageBox.Show("Profile Created Successfully");
+                }
+
+            }
+        }
 
         public MySqlDataReader fetchProfile(int userID)
         {
