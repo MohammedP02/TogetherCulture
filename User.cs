@@ -154,6 +154,55 @@ namespace TogetherCulture
             return results;
         }
 
+        public void updateProfile(int userID, int age, String name, String phonenumber, String location, List<String> interests)
+        {
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string queryUpdate= "UPDATE profile SET name=@nameParam,age=@ageParam,location=@locationParam,phonenumber=@phonenumberParam WHERE userID=@userIDParam)";
+                var cmd = new MySqlCommand(queryUpdate, connection.Connection);
+
+                cmd.Parameters.AddWithValue("@nameParam", name);
+                cmd.Parameters.AddWithValue("@ageParam", age);
+                cmd.Parameters.AddWithValue("@locationParam", location);
+                cmd.Parameters.AddWithValue("@phonenumberParam", phonenumber);
+                cmd.Parameters.AddWithValue("@userIDParam", userID);
+
+                var writer = cmd.ExecuteNonQuery();
+
+               
+                string queryDelete = "DELET FROM profile userID=@userIDParam)";
+                cmd = new MySqlCommand(queryDelete, connection.Connection);
+
+                cmd.Parameters.AddWithValue("@userIDParam", userID);
+                writer = cmd.ExecuteNonQuery();
+
+                if (writer > 0)
+                {
+                    foreach (String interest in interests)
+                    {
+                        string queryInterest = "INSERT INTO interests(userID,interestName) VALUES(@userIDParam,@interestParam)";
+                        cmd = new MySqlCommand(queryInterest, connection.Connection);
+
+                        cmd.Parameters.AddWithValue("@userIDParam", userID);
+                        cmd.Parameters.AddWithValue("@interestParam", interest);
+
+                        writer = cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Profile Updated Successfully");
+                }
+
+            }
+        }
+
         public bool deleteInterests(int userID)
         {
             bool del = false;
