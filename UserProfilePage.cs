@@ -207,7 +207,9 @@ namespace TogetherCulture
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Hide();
+            Form1 login = new Form1();
+            login.Show();
         }
     }
 }
