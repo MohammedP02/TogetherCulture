@@ -285,5 +285,10 @@ namespace TogetherCulture
             User user = new User();
             user.authorize(userID);
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

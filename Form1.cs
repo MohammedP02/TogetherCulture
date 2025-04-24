@@ -28,16 +28,17 @@ namespace TogetherCulture
         private void btnLogin_Click(object sender, EventArgs e)
         {
             String username = txtUsername.Text;
-            String password=txtPassword.Text;
+            String password = txtPassword.Text;
 
-            User user=new User();
-            MySqlDataReader queryResults = user.login(username,password);
+            User user = new User();
+            MySqlDataReader queryResults = user.login(username, password);
 
             if (queryResults == null)
             {
                 MessageBox.Show("Incorrect Username or Password. Try Again");
             }
-            else {
+            else
+            {
                 int userID = 0;
                 //get the role,userID and redirect to the user profile or admin dashboard
                 using (queryResults)
@@ -53,12 +54,13 @@ namespace TogetherCulture
                             MySqlDataReader profile = user.fetchProfile(userID);
                             MySqlDataReader interests = user.fetchInterests(userID);
 
-                            UserProfilePage page = new UserProfilePage(profile,userID,interests);
+                            UserProfilePage page = new UserProfilePage(profile, userID, interests);
                             page.Show();
                         }
-                        else {
+                        else
+                        {
                             this.Hide();
-                            AdminDashboard dashboard=new AdminDashboard();
+                            AdminDashboard dashboard = new AdminDashboard();
                             dashboard.Show();
                         }
                     }
@@ -66,6 +68,11 @@ namespace TogetherCulture
 
             }
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

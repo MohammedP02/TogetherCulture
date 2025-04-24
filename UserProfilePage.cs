@@ -204,5 +204,10 @@ namespace TogetherCulture
             UserProfilePage loadProfile = new UserProfilePage(profile, userID, interest);
             loadProfile.Show();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
