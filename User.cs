@@ -55,6 +55,36 @@ namespace TogetherCulture
 
             return results;
         }
+
+        public MySqlDataReader fetchUsers()
+        {
+            MySqlDataReader results = null;
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string query = "SELECT * FROM users";
+                var cmd = new MySqlCommand(query, connection.Connection);
+
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    results = reader;
+                }
+
+            }
+
+            return results;
+        }
+
+   
         public void createProfile(int userID,int age,String name,String phonenumber,String location,List<String> interests)
         {
            
@@ -112,6 +142,35 @@ namespace TogetherCulture
                 string query = "SELECT * FROM profile WHERE userID=@param1";
                 var cmd = new MySqlCommand(query, connection.Connection);
                 cmd.Parameters.AddWithValue("@param1", userID);
+
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    results = reader;
+                }
+
+            }
+
+            return results;
+        }
+
+        public MySqlDataReader fetchProfileByName(String search)
+        {
+            MySqlDataReader results = null;
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string query = "SELECT * FROM profile WHERE name LIKE '%@param1%' ";
+                var cmd = new MySqlCommand(query, connection.Connection);
+                cmd.Parameters.AddWithValue("@param1",search);
 
                 var reader = cmd.ExecuteReader();
 
