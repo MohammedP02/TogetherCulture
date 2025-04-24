@@ -143,8 +143,8 @@ namespace TogetherCulture
         {
             String search = txtSearch.Text;
             User user = new User();
-            
-            MySqlDataReader users= user.fetchProfileByName(search);
+
+            MySqlDataReader users = user.fetchProfileByName(search);
 
             if (users != null)
             {
@@ -167,7 +167,7 @@ namespace TogetherCulture
                         comboUsers.Enabled = false;
                         comboStatus.Enabled = false;
 
-                        btnCreate.Enabled  = false;
+                        btnCreate.Enabled = false;
                         btnUpdate.Enabled = true;
                         btnAuthorize.Enabled = true;
 
@@ -178,7 +178,7 @@ namespace TogetherCulture
                         connection.UserName = "root";
                         connection.Password = "";
 
-                        if (connection.Connected() )
+                        if (connection.Connected())
                         {
                             string query = "SELECT * FROM interests where userID=@userIDParam";
                             var cmd = new MySqlCommand(query, connection.Connection);
@@ -217,7 +217,7 @@ namespace TogetherCulture
                             else
                             {
                                 string userString = "";
-                                
+
                             }
 
                         }
@@ -229,6 +229,45 @@ namespace TogetherCulture
 
             }
 
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int userID = Int32.Parse(comboUsers.SelectedItem.ToString());
+            int age = Int32.Parse(txtAge.Text);
+            String name = txtName.Text;
+            String phonenumber = txtNumber.Text;
+            String location = txtLocation.Text;
+
+            List<String> interests = new List<string>();
+
+            if (chkCaring.Checked)
+            {
+                interests.Add("Caring");
+            }
+
+            if (chkCreating.Checked)
+            {
+                interests.Add("Creating");
+            }
+
+            if (chkExperiencing.Checked)
+            {
+                interests.Add("Experiencing");
+            }
+
+            if (chkSharing.Checked)
+            {
+                interests.Add("Sharing");
+            }
+
+            if (chkWorking.Checked)
+            {
+                interests.Add("Working");
+            }
+
+            User user = new User();
+            user.updateProfile(userID, age, name, phonenumber, location, interests);
         }
     }
 }

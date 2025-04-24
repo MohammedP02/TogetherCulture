@@ -211,9 +211,11 @@ namespace TogetherCulture
 
             if (connection.Connected())
             {
-                string query = "SELECT * FROM profile WHERE name LIKE @param1 ";
+                string query = "SELECT * FROM profile WHERE name LIKE @p1 @param1 @p2 ";
                 var cmd = new MySqlCommand(query, connection.Connection);
+                cmd.Parameters.AddWithValue("@p1", "%");
                 cmd.Parameters.AddWithValue("@param1",search);
+                cmd.Parameters.AddWithValue("@p2", "%");
 
                 var reader = cmd.ExecuteReader();
 
