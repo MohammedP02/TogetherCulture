@@ -26,7 +26,7 @@ namespace TogetherCulture
                     foreach (DbDataRecord record in profile)
                     {
                         txtName.Text = record.GetString(2);
-                        txtAge.Text = record.GetString(3);
+                        txtAge.Text = record.GetInt32(3).ToString();
                         txtLocation.Text = record.GetString(4);
                         txtNumber.Text = record.GetString(5);
 
@@ -42,6 +42,35 @@ namespace TogetherCulture
                         }
 
                         txtStatus.Text = status;
+                    }
+                }
+
+                if (interests!=null)
+                {
+                    using (interests) {
+                        foreach (DbDataRecord record in interests)
+                        {
+                            String interest=record.GetString(1);
+                            if (interest=="Sharing") {
+                                chkSharing.Checked = true;
+                            }else if (interest == "Caring")
+                            {
+                                chkCaring.Checked = true;
+                            }
+                            else if (interest == "Creating")
+                            {
+                                chkCreating.Checked = true;
+                            }
+                            else if (interest == "Experiencing")
+                            {
+                                chkExperiencing.Checked = true;
+                            }
+                            else if (interest == "Working")
+                            {
+                                chkWorking.Checked = true;
+                            }
+                        }
+
                     }
                 }
             }

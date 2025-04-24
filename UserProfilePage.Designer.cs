@@ -276,6 +276,7 @@
             // 
             // txtStatus
             // 
+            txtStatus.Enabled = false;
             txtStatus.Location = new Point(376, 92);
             txtStatus.Name = "txtStatus";
             txtStatus.Size = new Size(128, 23);

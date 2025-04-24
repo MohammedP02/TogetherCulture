@@ -71,7 +71,7 @@ namespace TogetherCulture
             {
                 string query = "SELECT * FROM profile WHERE userID=@param1";
                 var cmd = new MySqlCommand(query, connection.Connection);
-                cmd.Parameters.AddWithValue("@param1", username);
+                cmd.Parameters.AddWithValue("@param1", userID);
 
                 var reader = cmd.ExecuteReader();
 
@@ -100,7 +100,7 @@ namespace TogetherCulture
             {
                 string query = "SELECT * FROM interests WHERE userID=@param1";
                 var cmd = new MySqlCommand(query, connection.Connection);
-                cmd.Parameters.AddWithValue("@param1", username);
+                cmd.Parameters.AddWithValue("@param1", userID);
 
                 var reader = cmd.ExecuteReader();
 
