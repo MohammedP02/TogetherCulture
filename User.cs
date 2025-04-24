@@ -57,8 +57,7 @@ namespace TogetherCulture
         }
         public void createProfile(int userID,int age,String name,String phonenumber,String location,List<String> interests)
         {
-            MySqlDataReader results = null;
-
+           
             var connection = new DatabaseConnector();
 
             connection.Server = "localhost";
@@ -87,6 +86,8 @@ namespace TogetherCulture
 
                         cmd.Parameters.AddWithValue("@userIDParam", userID);
                         cmd.Parameters.AddWithValue("@interestParam", interest);
+
+                        writer = cmd.ExecuteNonQuery();
                     }
 
                     MessageBox.Show("Profile Created Successfully");
