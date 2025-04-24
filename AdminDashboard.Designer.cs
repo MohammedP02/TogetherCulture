@@ -38,30 +38,31 @@
             btnCreate = new Button();
             groupBox1 = new GroupBox();
             label8 = new Label();
-            textBox5 = new TextBox();
+            txtNumber = new TextBox();
             label7 = new Label();
-            textBox4 = new TextBox();
+            txtLocation = new TextBox();
             label6 = new Label();
-            textBox3 = new TextBox();
+            txtAge = new TextBox();
             label5 = new Label();
-            textBox2 = new TextBox();
+            txtName = new TextBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             label11 = new Label();
-            txtStatus = new TextBox();
             comboUsers = new ComboBox();
             label12 = new Label();
             label13 = new Label();
-            textBox1 = new TextBox();
+            txtSearch = new TextBox();
             btnSearch = new Button();
             btnAuthorize = new Button();
+            comboStatus = new ComboBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // btnUpdate
             // 
+            btnUpdate.Enabled = false;
             btnUpdate.Location = new Point(266, 474);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(189, 34);
@@ -136,6 +137,7 @@
             btnCreate.TabIndex = 32;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += btnCreate_Click;
             // 
             // groupBox1
             // 
@@ -162,12 +164,12 @@
             label8.TabIndex = 30;
             label8.Text = "Select Your Interests *";
             // 
-            // textBox5
+            // txtNumber
             // 
-            textBox5.Location = new Point(177, 252);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 23);
-            textBox5.TabIndex = 29;
+            txtNumber.Location = new Point(177, 252);
+            txtNumber.Name = "txtNumber";
+            txtNumber.Size = new Size(125, 23);
+            txtNumber.TabIndex = 29;
             // 
             // label7
             // 
@@ -179,12 +181,12 @@
             label7.TabIndex = 28;
             label7.Text = "Phone Number *";
             // 
-            // textBox4
+            // txtLocation
             // 
-            textBox4.Location = new Point(393, 256);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(128, 23);
-            textBox4.TabIndex = 27;
+            txtLocation.Location = new Point(393, 256);
+            txtLocation.Name = "txtLocation";
+            txtLocation.Size = new Size(128, 23);
+            txtLocation.TabIndex = 27;
             // 
             // label6
             // 
@@ -196,12 +198,12 @@
             label6.TabIndex = 26;
             label6.Text = "Location *";
             // 
-            // textBox3
+            // txtAge
             // 
-            textBox3.Location = new Point(177, 207);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 23);
-            textBox3.TabIndex = 25;
+            txtAge.Location = new Point(177, 207);
+            txtAge.Name = "txtAge";
+            txtAge.Size = new Size(125, 23);
+            txtAge.TabIndex = 25;
             // 
             // label5
             // 
@@ -213,12 +215,12 @@
             label5.TabIndex = 24;
             label5.Text = "Age *";
             // 
-            // textBox2
+            // txtName
             // 
-            textBox2.Location = new Point(393, 207);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(128, 23);
-            textBox2.TabIndex = 23;
+            txtName.Location = new Point(393, 207);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(128, 23);
+            txtName.TabIndex = 23;
             // 
             // label4
             // 
@@ -270,13 +272,6 @@
             label11.TabIndex = 39;
             label11.Text = "Status";
             // 
-            // txtStatus
-            // 
-            txtStatus.Location = new Point(393, 160);
-            txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(128, 23);
-            txtStatus.TabIndex = 40;
-            // 
             // comboUsers
             // 
             comboUsers.FormattingEnabled = true;
@@ -305,12 +300,12 @@
             label13.TabIndex = 43;
             label13.Text = "Enter Name";
             // 
-            // textBox1
+            // txtSearch
             // 
-            textBox1.Location = new Point(120, 82);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(169, 23);
-            textBox1.TabIndex = 44;
+            txtSearch.Location = new Point(120, 82);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(169, 23);
+            txtSearch.TabIndex = 44;
             // 
             // btnSearch
             // 
@@ -323,6 +318,7 @@
             // 
             // btnAuthorize
             // 
+            btnAuthorize.Enabled = false;
             btnAuthorize.Location = new Point(470, 474);
             btnAuthorize.Name = "btnAuthorize";
             btnAuthorize.Size = new Size(152, 34);
@@ -330,31 +326,40 @@
             btnAuthorize.Text = "Authorize";
             btnAuthorize.UseVisualStyleBackColor = true;
             // 
+            // comboStatus
+            // 
+            comboStatus.FormattingEnabled = true;
+            comboStatus.Items.AddRange(new object[] { "Authorized", "Not Authorized" });
+            comboStatus.Location = new Point(395, 157);
+            comboStatus.Name = "comboStatus";
+            comboStatus.Size = new Size(121, 23);
+            comboStatus.TabIndex = 47;
+            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(854, 538);
+            Controls.Add(comboStatus);
             Controls.Add(btnAuthorize);
             Controls.Add(btnSearch);
-            Controls.Add(textBox1);
+            Controls.Add(txtSearch);
             Controls.Add(label13);
             Controls.Add(label12);
             Controls.Add(comboUsers);
-            Controls.Add(txtStatus);
             Controls.Add(label11);
             Controls.Add(btnUpdate);
             Controls.Add(btnExit);
             Controls.Add(btnCreate);
             Controls.Add(groupBox1);
             Controls.Add(label8);
-            Controls.Add(textBox5);
+            Controls.Add(txtNumber);
             Controls.Add(label7);
-            Controls.Add(textBox4);
+            Controls.Add(txtLocation);
             Controls.Add(label6);
-            Controls.Add(textBox3);
+            Controls.Add(txtAge);
             Controls.Add(label5);
-            Controls.Add(textBox2);
+            Controls.Add(txtName);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -379,24 +384,24 @@
         private Button btnCreate;
         private GroupBox groupBox1;
         private Label label8;
-        private TextBox textBox5;
+        private TextBox txtNumber;
         private Label label7;
-        private TextBox textBox4;
+        private TextBox txtLocation;
         private Label label6;
-        private TextBox textBox3;
+        private TextBox txtAge;
         private Label label5;
-        private TextBox textBox2;
+        private TextBox txtName;
         private Label label4;
         private Label label3;
         private Label label2;
         private Label label1;
         private Label label11;
-        private TextBox txtStatus;
         private ComboBox comboUsers;
         private Label label12;
         private Label label13;
-        private TextBox textBox1;
+        private TextBox txtSearch;
         private Button btnSearch;
         private Button btnAuthorize;
+        private ComboBox comboStatus;
     }
 }

@@ -69,7 +69,7 @@ namespace TogetherCulture
 
             if (connection.Connected())
             {
-                string query = "SELECT * FROM users";
+                string query = "SELECT * FROM user";
                 var cmd = new MySqlCommand(query, connection.Connection);
 
                 var reader = cmd.ExecuteReader();
@@ -111,6 +111,49 @@ namespace TogetherCulture
                 if (writer > 0)
                 {
                     foreach (String interest in interests) {
+                        string queryInterest = "INSERT INTO interests(userID,interestName) VALUES(@userIDParam,@interestParam)";
+                        cmd = new MySqlCommand(queryInterest, connection.Connection);
+
+                        cmd.Parameters.AddWithValue("@userIDParam", userID);
+                        cmd.Parameters.AddWithValue("@interestParam", interest);
+
+                        writer = cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Profile Created Successfully");
+                }
+
+            }
+        }
+
+        public void createProfile(int userID, int age, String name, String phonenumber, String location,int status, List<String> interests)
+        {
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string queryProfile = "INSERT INTO profile(userID,name,age,location,phonenumber,status) VALUES(@userIDParam,@nameParam,@ageParam,@locationParam,@phonenumberParam,@statusParam)";
+                var cmd = new MySqlCommand(queryProfile, connection.Connection);
+
+                cmd.Parameters.AddWithValue("@userIDParam", userID);
+                cmd.Parameters.AddWithValue("@nameParam", name);
+                cmd.Parameters.AddWithValue("@ageParam", age);
+                cmd.Parameters.AddWithValue("@locationParam", location);
+                cmd.Parameters.AddWithValue("@phonenumberParam", phonenumber);
+                cmd.Parameters.AddWithValue("@statusParam", status);
+
+                var writer = cmd.ExecuteNonQuery();
+
+                if (writer > 0)
+                {
+                    foreach (String interest in interests)
+                    {
                         string queryInterest = "INSERT INTO interests(userID,interestName) VALUES(@userIDParam,@interestParam)";
                         cmd = new MySqlCommand(queryInterest, connection.Connection);
 
