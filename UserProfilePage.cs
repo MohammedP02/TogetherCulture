@@ -43,7 +43,7 @@ namespace TogetherCulture
                         else
                         {
                             status = "Pending Authorization";
-   
+
                         }
 
                         txtStatus.Text = status;
@@ -107,12 +107,13 @@ namespace TogetherCulture
             int userID = Int32.Parse(txtUserID.Text);
             int age = Int32.Parse(txtAge.Text);
             String name = txtName.Text;
-            String phonenumber=txtNumber.Text;
+            String phonenumber = txtNumber.Text;
             String location = txtLocation.Text;
 
             List<String> interests = new List<string>();
 
-            if (chkCaring.Checked) {
+            if (chkCaring.Checked)
+            {
                 interests.Add("Caring");
             }
 
@@ -139,24 +140,69 @@ namespace TogetherCulture
             User user = new User();
             user.createProfile(userID, age, name, phonenumber, location, interests);
 
-            txtUserID.Text="";
-            txtAge.Text="";
-            txtName.Text="";
-            txtNumber.Text="";
-            txtLocation.Text="";
+            txtUserID.Text = "";
+            txtAge.Text = "";
+            txtName.Text = "";
+            txtNumber.Text = "";
+            txtLocation.Text = "";
 
-            chkCaring.Checked=false;
-            chkCreating.Checked=false;
-            chkExperiencing.Checked=false;
-            chkSharing.Checked=false;
-            chkWorking.Checked=false;
+            chkCaring.Checked = false;
+            chkCreating.Checked = false;
+            chkExperiencing.Checked = false;
+            chkSharing.Checked = false;
+            chkWorking.Checked = false;
 
             MySqlDataReader profile = user.fetchProfile(userID);
             MySqlDataReader interest = user.fetchInterests(userID);
             this.Hide();
-            UserProfilePage loadProfile = new UserProfilePage(profile,userID,interest);
+            UserProfilePage loadProfile = new UserProfilePage(profile, userID, interest);
             loadProfile.Show();
 
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int userID = Int32.Parse(txtUserID.Text);
+            int age = Int32.Parse(txtAge.Text);
+            String name = txtName.Text;
+            String phonenumber = txtNumber.Text;
+            String location = txtLocation.Text;
+
+            List<String> interests = new List<string>();
+
+            if (chkCaring.Checked)
+            {
+                interests.Add("Caring");
+            }
+
+            if (chkCreating.Checked)
+            {
+                interests.Add("Creating");
+            }
+
+            if (chkExperiencing.Checked)
+            {
+                interests.Add("Experiencing");
+            }
+
+            if (chkSharing.Checked)
+            {
+                interests.Add("Sharing");
+            }
+
+            if (chkWorking.Checked)
+            {
+                interests.Add("Working");
+            }
+
+            User user = new User();
+            user.updateProfile(userID, age, name, phonenumber, location, interests);
+
+            MySqlDataReader profile = user.fetchProfile(userID);
+            MySqlDataReader interest = user.fetchInterests(userID);
+            this.Hide();
+            UserProfilePage loadProfile = new UserProfilePage(profile, userID, interest);
+            loadProfile.Show();
         }
     }
 }

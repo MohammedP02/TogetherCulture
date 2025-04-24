@@ -166,7 +166,7 @@ namespace TogetherCulture
 
             if (connection.Connected())
             {
-                string queryUpdate= "UPDATE profile SET name=@nameParam,age=@ageParam,location=@locationParam,phonenumber=@phonenumberParam WHERE userID=@userIDParam)";
+                string queryUpdate= "UPDATE profile SET name=@nameParam,age=@ageParam,location=@locationParam,phonenumber=@phonenumberParam WHERE userID=@userIDParam";
                 var cmd = new MySqlCommand(queryUpdate, connection.Connection);
 
                 cmd.Parameters.AddWithValue("@nameParam", name);
@@ -175,10 +175,11 @@ namespace TogetherCulture
                 cmd.Parameters.AddWithValue("@phonenumberParam", phonenumber);
                 cmd.Parameters.AddWithValue("@userIDParam", userID);
 
+
                 var writer = cmd.ExecuteNonQuery();
 
                
-                string queryDelete = "DELETE FROM profile userID=@userIDParam)";
+                string queryDelete = "DELETE FROM interests WHERE userID=@userIDParam";
                 cmd = new MySqlCommand(queryDelete, connection.Connection);
 
                 cmd.Parameters.AddWithValue("@userIDParam", userID);
