@@ -327,6 +327,7 @@
             btnAuthorize.TabIndex = 46;
             btnAuthorize.Text = "Authorize";
             btnAuthorize.UseVisualStyleBackColor = true;
+            btnAuthorize.Click += btnAuthorize_Click;
             // 
             // comboStatus
             // 

@@ -174,7 +174,8 @@ namespace TogetherCulture
                         {
                             btnAuthorize.Enabled = true;
                         }
-                        else {
+                        else
+                        {
                             btnAuthorize.Enabled = false;
                         }
 
@@ -275,6 +276,14 @@ namespace TogetherCulture
 
             User user = new User();
             user.updateProfile(userID, age, name, phonenumber, location, interests);
+        }
+
+        private void btnAuthorize_Click(object sender, EventArgs e)
+        {
+            int userID = Int32.Parse(comboUsers.SelectedItem.ToString());
+
+            User user = new User();
+            user.authorize(userID);
         }
     }
 }
