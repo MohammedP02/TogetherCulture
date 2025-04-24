@@ -178,7 +178,7 @@ namespace TogetherCulture
                 var writer = cmd.ExecuteNonQuery();
 
                
-                string queryDelete = "DELET FROM profile userID=@userIDParam)";
+                string queryDelete = "DELETE FROM profile userID=@userIDParam)";
                 cmd = new MySqlCommand(queryDelete, connection.Connection);
 
                 cmd.Parameters.AddWithValue("@userIDParam", userID);
