@@ -23,7 +23,7 @@ namespace TogetherCulture
             InitializeComponent();
             // Fetch all users
             User user = new User();
-            MySqlDataReader allUsers=user.fetchUsers();
+            MySqlDataReader allUsers = user.fetchUsers();
 
             if (allUsers != null)
             {
@@ -41,7 +41,7 @@ namespace TogetherCulture
                         connection.UserName = "root";
                         connection.Password = "";
 
-                        if (connection.Connected() && record.GetString(3)!="admin")
+                        if (connection.Connected() && record.GetString(3) != "admin")
                         {
                             string query = "SELECT * FROM profile where userID=@userIDParam";
                             var cmd = new MySqlCommand(query, connection.Connection);
@@ -61,8 +61,8 @@ namespace TogetherCulture
 
                         }
 
-                        
-                        
+
+
                     }
                 }
 
@@ -78,7 +78,7 @@ namespace TogetherCulture
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            
+
             int userID = Int32.Parse(comboUsers.SelectedItem.ToString().Split("-")[0]);
 
             int age = Int32.Parse(txtAge.Text);
@@ -89,7 +89,8 @@ namespace TogetherCulture
             String status = comboStatus.SelectedItem.ToString();
             int statusInt = 0;
 
-            if (status.Contains("Authorized")) {
+            if (status.Contains("Authorized"))
+            {
                 statusInt = 1;
             }
 
@@ -121,7 +122,7 @@ namespace TogetherCulture
             }
 
             User user = new User();
-            user.createProfile(userID, age, name, phonenumber, location,statusInt, interests);
+            user.createProfile(userID, age, name, phonenumber, location, statusInt, interests);
 
             comboUsers.Text = "";
             comboStatus.Text = "";
@@ -135,7 +136,99 @@ namespace TogetherCulture
             chkExperiencing.Checked = false;
             chkSharing.Checked = false;
             chkWorking.Checked = false;
-          
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            String search = txtSearch.Text;
+            User user = new User();
+            
+            MySqlDataReader users= user.fetchProfileByName(search);
+
+            if (users != null)
+            {
+                using (users)
+                {
+                    foreach (DbDataRecord record in users)
+                    {
+
+                        int userID = record.GetInt32(1);
+
+                        txtName.Text = record.GetString(2);
+                        txtAge.Text = record.GetInt32(3).ToString();
+                        txtLocation.Text = record.GetString(4);
+                        txtNumber.Text = record.GetString(5);
+                        comboStatus.SelectedIndex = record.GetInt32(6);
+
+                        comboUsers.Items.Clear();
+                        comboUsers.Items.Add(userID);
+                        comboUsers.SelectedIndex = 0;
+                        comboUsers.Enabled = false;
+                        comboStatus.Enabled = false;
+
+                        btnCreate.Enabled  = false;
+                        btnUpdate.Enabled = true;
+                        btnAuthorize.Enabled = true;
+
+                        var connection = new DatabaseConnector();
+
+                        connection.Server = "localhost";
+                        connection.DatabaseName = "togetherculture";
+                        connection.UserName = "root";
+                        connection.Password = "";
+
+                        if (connection.Connected() )
+                        {
+                            string query = "SELECT * FROM interests where userID=@userIDParam";
+                            var cmd = new MySqlCommand(query, connection.Connection);
+                            cmd.Parameters.AddWithValue("@userIDParam", userID);
+
+                            var reader = cmd.ExecuteReader();
+
+                            if (reader.HasRows)
+                            {
+                                foreach (DbDataRecord rec in reader)
+                                {
+                                    String interest = rec.GetString(1);
+
+                                    if (interest == "Sharing")
+                                    {
+                                        chkSharing.Checked = true;
+                                    }
+                                    else if (interest == "Caring")
+                                    {
+                                        chkCaring.Checked = true;
+                                    }
+                                    else if (interest == "Creating")
+                                    {
+                                        chkCreating.Checked = true;
+                                    }
+                                    else if (interest == "Experiencing")
+                                    {
+                                        chkExperiencing.Checked = true;
+                                    }
+                                    else if (interest == "Working")
+                                    {
+                                        chkWorking.Checked = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                string userString = "";
+                                
+                            }
+
+                        }
+
+
+
+                    }
+                }
+
+            }
+
         }
     }
 }

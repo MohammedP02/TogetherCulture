@@ -315,6 +315,7 @@
             btnSearch.TabIndex = 45;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // btnAuthorize
             // 
