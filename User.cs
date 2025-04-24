@@ -56,7 +56,65 @@ namespace TogetherCulture
             return results;
         }
 
-        
+        public MySqlDataReader fetchProfile(int userID)
+        {
+            MySqlDataReader results = null;
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string query = "SELECT * FROM profile WHERE userID=@param1";
+                var cmd = new MySqlCommand(query, connection.Connection);
+                cmd.Parameters.AddWithValue("@param1", username);
+
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    results = reader;
+                }
+
+            }
+
+            return results;
+        }
+
+        public MySqlDataReader fetchInterests(int userID)
+        {
+            MySqlDataReader results = null;
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string query = "SELECT * FROM interests WHERE userID=@param1";
+                var cmd = new MySqlCommand(query, connection.Connection);
+                cmd.Parameters.AddWithValue("@param1", username);
+
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    results = reader;
+                }
+
+            }
+
+            return results;
+        }
+
+
 
 
     }

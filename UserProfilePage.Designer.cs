@@ -31,15 +31,15 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
+            txtUserID = new TextBox();
             label4 = new Label();
-            textBox2 = new TextBox();
+            txtName = new TextBox();
             label5 = new Label();
-            textBox3 = new TextBox();
+            txtAge = new TextBox();
             label6 = new Label();
-            textBox4 = new TextBox();
+            txtLocation = new TextBox();
             label7 = new Label();
-            textBox5 = new TextBox();
+            txtNumber = new TextBox();
             label8 = new Label();
             groupBox1 = new GroupBox();
             chkWorking = new CheckBox();
@@ -50,6 +50,8 @@
             btnCreate = new Button();
             btnDelete = new Button();
             btnUpdate = new Button();
+            label9 = new Label();
+            txtStatus = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -83,29 +85,30 @@
             label3.TabIndex = 3;
             label3.Text = "User ID ";
             // 
-            // textBox1
+            // txtUserID
             // 
-            textBox1.Location = new Point(155, 88);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(128, 23);
-            textBox1.TabIndex = 4;
+            txtUserID.Enabled = false;
+            txtUserID.Location = new Point(155, 88);
+            txtUserID.Name = "txtUserID";
+            txtUserID.Size = new Size(128, 23);
+            txtUserID.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(299, 90);
+            label4.Location = new Point(293, 140);
             label4.Name = "label4";
             label4.Size = new Size(63, 21);
             label4.TabIndex = 5;
             label4.Text = "Name *";
             // 
-            // textBox2
+            // txtName
             // 
-            textBox2.Location = new Point(382, 92);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(128, 23);
-            textBox2.TabIndex = 6;
+            txtName.Location = new Point(376, 142);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(128, 23);
+            txtName.TabIndex = 6;
             // 
             // label5
             // 
@@ -117,30 +120,30 @@
             label5.TabIndex = 7;
             label5.Text = "Age *";
             // 
-            // textBox3
+            // txtAge
             // 
-            textBox3.Location = new Point(155, 137);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(128, 23);
-            textBox3.TabIndex = 8;
+            txtAge.Location = new Point(155, 137);
+            txtAge.Name = "txtAge";
+            txtAge.Size = new Size(128, 23);
+            txtAge.TabIndex = 8;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(299, 139);
+            label6.Location = new Point(293, 189);
             label6.Name = "label6";
             label6.Size = new Size(80, 21);
             label6.TabIndex = 9;
             label6.Text = "Location *";
             label6.Click += label6_Click;
             // 
-            // textBox4
+            // txtLocation
             // 
-            textBox4.Location = new Point(382, 141);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(128, 23);
-            textBox4.TabIndex = 10;
+            txtLocation.Location = new Point(376, 191);
+            txtLocation.Name = "txtLocation";
+            txtLocation.Size = new Size(128, 23);
+            txtLocation.TabIndex = 10;
             // 
             // label7
             // 
@@ -152,12 +155,12 @@
             label7.TabIndex = 11;
             label7.Text = "Phone Number *";
             // 
-            // textBox5
+            // txtNumber
             // 
-            textBox5.Location = new Point(158, 182);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 23);
-            textBox5.TabIndex = 12;
+            txtNumber.Location = new Point(158, 182);
+            txtNumber.Name = "txtNumber";
+            txtNumber.Size = new Size(125, 23);
+            txtNumber.TabIndex = 12;
             // 
             // label8
             // 
@@ -261,25 +264,44 @@
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(297, 90);
+            label9.Name = "label9";
+            label9.Size = new Size(52, 21);
+            label9.TabIndex = 18;
+            label9.Text = "Status";
+            // 
+            // txtStatus
+            // 
+            txtStatus.Location = new Point(376, 92);
+            txtStatus.Name = "txtStatus";
+            txtStatus.Size = new Size(128, 23);
+            txtStatus.TabIndex = 19;
+            // 
             // UserProfilePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(843, 488);
+            Controls.Add(txtStatus);
+            Controls.Add(label9);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
             Controls.Add(btnCreate);
             Controls.Add(groupBox1);
             Controls.Add(label8);
-            Controls.Add(textBox5);
+            Controls.Add(txtNumber);
             Controls.Add(label7);
-            Controls.Add(textBox4);
+            Controls.Add(txtLocation);
             Controls.Add(label6);
-            Controls.Add(textBox3);
+            Controls.Add(txtAge);
             Controls.Add(label5);
-            Controls.Add(textBox2);
+            Controls.Add(txtName);
             Controls.Add(label4);
-            Controls.Add(textBox1);
+            Controls.Add(txtUserID);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -297,15 +319,15 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox txtUserID;
         private Label label4;
-        private TextBox textBox2;
+        private TextBox txtName;
         private Label label5;
-        private TextBox textBox3;
+        private TextBox txtAge;
         private Label label6;
-        private TextBox textBox4;
+        private TextBox txtLocation;
         private Label label7;
-        private TextBox textBox5;
+        private TextBox txtNumber;
         private Label label8;
         private GroupBox groupBox1;
         private CheckBox chkCaring;
@@ -316,5 +338,7 @@
         private Button btnCreate;
         private Button btnDelete;
         private Button btnUpdate;
+        private Label label9;
+        private TextBox txtStatus;
     }
 }

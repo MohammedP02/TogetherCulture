@@ -38,16 +38,22 @@ namespace TogetherCulture
                 MessageBox.Show("Incorrect Username or Password. Try Again");
             }
             else {
-                //get the role and redirect to the user profile or admin dashboard
+                int userID = 0;
+                //get the role,userID and redirect to the user profile or admin dashboard
                 using (queryResults)
                 {
                     while (queryResults.Read())
                     {
                         String role = queryResults.GetString(3);
+                        userID = queryResults.GetInt32(0);
                         if (role == "user")
                         {
                             this.Hide();
-                            UserProfilePage page = new UserProfilePage();
+                            //fetch the profile
+                            MySqlDataReader profile = user.fetchProfile(userID);
+                            MySqlDataReader interests = user.fetchInterests(userID);
+
+                            UserProfilePage page = new UserProfilePage(profile,userID,interests);
                             page.Show();
                         }
                         else {
