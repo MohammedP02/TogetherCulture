@@ -331,7 +331,7 @@
             // comboStatus
             // 
             comboStatus.FormattingEnabled = true;
-            comboStatus.Items.AddRange(new object[] { "Authorized", "Not Authorized" });
+            comboStatus.Items.AddRange(new object[] { "Not Authorized", "Authorized" });
             comboStatus.Location = new Point(395, 157);
             comboStatus.Name = "comboStatus";
             comboStatus.Size = new Size(121, 23);

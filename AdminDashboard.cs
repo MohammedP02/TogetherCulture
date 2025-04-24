@@ -169,7 +169,14 @@ namespace TogetherCulture
 
                         btnCreate.Enabled = false;
                         btnUpdate.Enabled = true;
-                        btnAuthorize.Enabled = true;
+
+                        if (record.GetInt32(6) == 0)
+                        {
+                            btnAuthorize.Enabled = true;
+                        }
+                        else {
+                            btnAuthorize.Enabled = false;
+                        }
 
                         var connection = new DatabaseConnector();
 

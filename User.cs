@@ -308,6 +308,35 @@ namespace TogetherCulture
             }
         }
 
+        public void authorize(int userID)
+        {
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string queryUpdate = "UPDATE profile SET status=@statusParam WHERE userID=@userIDParam";
+                var cmd = new MySqlCommand(queryUpdate, connection.Connection);
+
+                cmd.Parameters.AddWithValue("@statusParam", 1);
+                cmd.Parameters.AddWithValue("@userIDParam", userID);
+
+
+                var writer = cmd.ExecuteNonQuery();
+
+                if (writer > 0)
+                {
+                    MessageBox.Show("Profile Authorized Successfully");
+                }
+
+            }
+        }
+
         public bool deleteInterests(int userID)
         {
             bool del = false;
