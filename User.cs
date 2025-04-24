@@ -154,6 +154,35 @@ namespace TogetherCulture
             return results;
         }
 
+        public bool deleteInterests(int userID)
+        {
+            bool del = false;
+
+            var connection = new DatabaseConnector();
+
+            connection.Server = "localhost";
+            connection.DatabaseName = "togetherculture";
+            connection.UserName = "root";
+            connection.Password = "";
+
+            if (connection.Connected())
+            {
+                string query = "DELETE FROM interests WHERE userID=@param1";
+                var cmd = new MySqlCommand(query, connection.Connection);
+                cmd.Parameters.AddWithValue("@param1", userID);
+
+                var writer = cmd.ExecuteNonQuery();
+
+                if (writer>0)
+                {
+                    del = true;
+                }
+
+            }
+
+            return del;
+        }
+
 
 
 
