@@ -121,8 +121,8 @@ namespace TogetherCulture
                 interests.Add("Working");
             }
 
-            User user = new User();
-            user.createProfile(userID, age, name, phonenumber, location, statusInt, interests);
+            Profile profile = new Profile();
+            profile.createProfile(userID, age, name, phonenumber, location, statusInt, interests);
 
             comboUsers.Text = "";
             comboStatus.Text = "";
@@ -142,9 +142,9 @@ namespace TogetherCulture
         private void btnSearch_Click(object sender, EventArgs e)
         {
             String search = txtSearch.Text;
-            User user = new User();
+            Profile profile = new Profile();
 
-            MySqlDataReader users = user.fetchProfileByName(search);
+            MySqlDataReader users = profile.fetchProfileByName(search);
 
             if (users != null)
             {
@@ -274,16 +274,16 @@ namespace TogetherCulture
                 interests.Add("Working");
             }
 
-            User user = new User();
-            user.updateProfile(userID, age, name, phonenumber, location, interests);
+            Profile profile = new Profile();
+            profile.updateProfile(userID, age, name, phonenumber, location, interests);
         }
 
         private void btnAuthorize_Click(object sender, EventArgs e)
         {
             int userID = Int32.Parse(comboUsers.SelectedItem.ToString());
 
-            User user = new User();
-            user.authorize(userID);
+            Profile profile = new Profile();
+            profile.authorize(userID);
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -291,6 +291,11 @@ namespace TogetherCulture
             this.Hide();
             Form1 login = new Form1();
             login.Show();
+        }
+
+        private void AdminDashboard_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

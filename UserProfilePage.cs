@@ -137,7 +137,7 @@ namespace TogetherCulture
                 interests.Add("Working");
             }
 
-            User user = new User();
+            Profile user = new Profile();
             user.createProfile(userID, age, name, phonenumber, location, interests);
 
             txtUserID.Text = "";
@@ -195,7 +195,7 @@ namespace TogetherCulture
                 interests.Add("Working");
             }
 
-            User user = new User();
+            Profile user = new Profile();
             user.updateProfile(userID, age, name, phonenumber, location, interests);
 
             MySqlDataReader profile = user.fetchProfile(userID);

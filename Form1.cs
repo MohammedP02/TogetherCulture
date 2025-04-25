@@ -31,6 +31,8 @@ namespace TogetherCulture
             String password = txtPassword.Text;
 
             User user = new User();
+            Profile prof = new Profile();
+
             MySqlDataReader queryResults = user.login(username, password);
 
             if (queryResults == null)
@@ -51,8 +53,8 @@ namespace TogetherCulture
                         {
                             this.Hide();
                             //fetch the profile
-                            MySqlDataReader profile = user.fetchProfile(userID);
-                            MySqlDataReader interests = user.fetchInterests(userID);
+                            MySqlDataReader profile = prof.fetchProfile(userID);
+                            MySqlDataReader interests = prof.fetchInterests(userID);
 
                             UserProfilePage page = new UserProfilePage(profile, userID, interests);
                             page.Show();
