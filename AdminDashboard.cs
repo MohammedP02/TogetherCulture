@@ -245,6 +245,7 @@ namespace TogetherCulture
             int age = Int32.Parse(txtAge.Text);
             String name = txtName.Text;
             String phonenumber = txtNumber.Text;
+            
             String location = txtLocation.Text;
 
             List<String> interests = new List<string>();
